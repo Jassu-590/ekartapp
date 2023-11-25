@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ekart|Index</title>
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+{% include 'navbar.html' %}
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 p-3 mb-2 bg-secondary-subtle text-emphasis-secondary">
+        <p class="fs-5 text-dark">Filter By Category</p>
+        <hr>
+        <a href="/home" >All</a><br/>
+        <a href="/catfilter/1" >Mobile</a><br/>
+        <a href="/catfilter/2" >Clothes</a><br/>
+        <a href="/catfilter/3" >Shoes</a><br/>
+        <br/>       
+        <p class="fs-5 text-dark">Filter By Price</p>
+        <form action="/range">
+        <hr>
+        <p>min</p>
+        <input type="number" class="lh-lg form-control" name="min" id="input1">
+        <p>max</p>
+        <input type="number" class="lh-lg form-control" name="max" id="input2">
+        <br/>
+        <br/>
+        <input type="submit" class="btn btn-danger" value="Search">
+      </form>
+        <br/>
+        <br/>
+        <p class="fs-5 text-dark">Sort By Price</p>
+        <hr>
+        <a href="/sort/0" >High to Low</a><br/>
+        <a href="/sort/1" >Low to High</a><br/>
+      </div>
+      <div class="col-md-9"> 
+        <div class="row mt-3">
+           {% for x in Products %}
+           <div class="col-md-4 mt-2">
+             <div class="card" style="width: 18 rem;">
+               <img src="{{x.pimage.url}}" class="card-img-top" width="100%" height="250px" alt="...">
+                 <div class="card-body">
+                   <h5 class="card-title">{{x.pname}}</h5>
+                   <h5 class="card-text">{{x.pcost}}</h5>
+                     {% if  x.cat == 1 %}
+                        <p class="card-text">Mobile</p>
+                      {% elif  x.cat == 2 %}
+                          <p class="card-text">Clothes</p>
+                      {% else %}
+                          <p class="card-text">Shoes</p>
+                      {% endif %}
+                        <a href="/pdetails/{{x.id}}" class="btn btn-danger"> See Details</a>
+                   </div>
+                </div>
+             </div>
+        {% endfor %}
+      </div>
+
+      {% comment %} <div class="col-md-3">
+        <div class="grid text-center">
+           <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+             <img src="https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=" style="height:200px; width:250px;">
+              <p>Adidas Shoes</p>
+             <p>Stylish shoes for casual outlings</p>
+             <button type="button" class="btn btn-primary">Add to cart</button>
+             <button type="button" class="btn btn-danger">Remove</button>
+           </div>
+         </div>
+         <div class="grid text-center">
+            <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+               <img src="https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=" style="height:200px; width:250px;">
+               <p>Adidas Shoes</p>
+               <p>Stylish shoes for casual outlings</p>
+               <button type="button" class="btn btn-primary">Add to cart</button>
+               <button type="button" class="btn btn-danger">Remove</button>
+             </div>
+           </div>
+           <div class="grid text-center">
+            <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+              <img src="https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=" style="height:200px; width:250px;">
+               <p>Adidas Shoes</p>
+              <p>Stylish shoes for casual outlings</p>
+              <button type="button" class="btn btn-primary">Add to cart</button>
+              <button type="button" class="btn btn-danger">Remove</button>
+            </div>
+          </div>
+       </div>
+      <div class="col-md-3">
+        <div class="grid text-center">
+          <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <img src="https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=" style="height:200px; width:250px;">
+             <p>Adidas Shoes</p>
+            <p>Stylish shoes for casual outlings</p>
+            <button type="button" class="btn btn-primary">Add to cart</button>
+            <button type="button" class="btn btn-danger">Remove</button>
+          </div>
+        </div>
+        <div class="grid text-center">
+          <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <img src="https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=" style="height:200px; width:250px;">
+             <p>Adidas Shoes</p>
+            <p>Stylish shoes for casual outlings</p>
+            <button type="button" class="btn btn-primary">Add to cart</button>
+            <button type="button" class="btn btn-danger">Remove</button>
+          </div>
+        </div>
+        <div class="grid text-center">
+          <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <img src="https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=" style="height:200px; width:250px;">
+             <p>Adidas Shoes</p>
+            <p>Stylish shoes for casual outlings</p>
+            <button type="button" class="btn btn-primary">Add to cart</button>
+            <button type="button" class="btn btn-danger">Remove</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="grid text-center">
+          <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <img src="https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=" style="height:200px; width:250px;">
+             <p>Adidas Shoes</p>
+            <p>Stylish shoes for casual outlings</p>
+            <button type="button" class="btn btn-primary">Add to cart</button>
+            <button type="button" class="btn btn-danger">Remove</button>
+          </div>
+        </div>
+        <div class="grid text-center">
+          <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <img src="https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=" style="height:200px; width:250px;">
+             <p>Adidas Shoes</p>
+            <p>Stylish shoes for casual outlings</p>
+            <button type="button" class="btn btn-primary">Add to cart</button>
+            <button type="button" class="btn btn-danger">Remove</button>
+          </div>
+        </div>
+        <div class="grid text-center">
+          <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <img src="https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.webp?b=1&s=170667a&w=0&k=20&c=liUSgX6SafJ7HWvefFqR9-pnf3KuH6v1lwQ6iEpePWc=" style="height:200px; width:250px;">
+             <p>Adidas Shoes</p>
+            <p>Stylish shoes for casual outlings</p>
+            <button type="button" class="btn btn-primary">Add to cart</button>
+            <button type="button" class="btn btn-danger">Remove</button>
+          </div>
+        </div>
+      </div> {% endcomment %}
+    </div> 
+  </div>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/popper.min.js"></script>
+</body>
+{% include 'footer.html' %}
+</html>
